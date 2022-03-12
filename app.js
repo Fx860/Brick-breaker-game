@@ -1,4 +1,5 @@
 const grid = document.querySelector('.grid')
+const scoredisplay = document.querySelector('#score')
 const blockWidth = 100
 const blockHight = 20
 const ballDiameter = 20
@@ -113,10 +114,20 @@ function checkForCollisons() {
     // check for wall collisons
     if (
         ballcurrentPositon[0] >= (borardWidth - ballDiameter) || 
-        ballcurrentPositon[1] >= (borardHeight - ballDiameter)
+        ballcurrentPositon[1] >= (borardHeight - ballDiameter) ||
+        ballcurrentPositon[0] <= 0
         ) {
     changeDirection() 
 }
+
+// check for game over
+if (ballcurrentPositon[1] <= 0) {
+    clearInterval(timerid)
+    scoredisplay.innerHTML = 'You lose'
+    document.removeEventListener('keydown', moveUser)
+
+}
+
 }
 
 function  changeDirection() {
