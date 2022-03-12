@@ -1,7 +1,12 @@
 const grid = document.querySelector('.grid')
 const blockWidth = 100
 const blockHight = 20
+const ballDiameter = 20
 const borardWidth = 560
+const borardHeight = 300
+let timerid
+let xDirection = 2
+let yDirection = 2
 
 const userStart = [230, 10]
 let currentPositon = userStart
@@ -92,4 +97,48 @@ const ball = document.createElement('div')
 ball.classList.add('ball')
 drawBall()
 grid.appendChild(ball)
+
+//move ball
+function moveBall() {
+    ballcurrentPositon[0] += xDirection
+    ballcurrentPositon[1] += yDirection
+    drawBall()
+    checkForCollisons()
+} 
+
+timerid =  setInterval(moveBall, 30)
+
+// check for collisons
+function checkForCollisons() {
+    // check for wall collisons
+    if (
+        ballcurrentPositon[0] >= (borardWidth - ballDiameter) || 
+        ballcurrentPositon[1] >= (borardHeight - ballDiameter)
+        ) {
+    changeDirection() 
+}
+}
+
+function  changeDirection() {
+    if (xDirection === 2 && yDirection ===2) {
+        yDirection = -2
+        return
+    }
+     if (xDirection === 2 && yDirection === -2) {
+        xDirection = -2
+        return
+     }
+     if (xDirection === -2 && yDirection === -2 ) {
+         yDirection == 2
+         return
+     }
+     if (xDirection === -2 && yDirection === 2) {
+         xDirection = 2
+         return
+     }
+}
+
+
+
+
 
