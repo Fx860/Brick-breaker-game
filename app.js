@@ -6,6 +6,9 @@ const borardWidth = 560
 const userStart = [230, 10]
 let currentPositon = userStart
 
+const ballStart = [270, 32]
+let ballcurrentPositon = ballStart
+
 //crate Block 
 class Block {
     constructor(xAxis, yAxis) {
@@ -57,6 +60,13 @@ function drawUser() {
     user.style.bottom = currentPositon[1] + 'px'
 }
 
+//draw the ball
+function drawBall() {
+    ball.style.left = ballcurrentPositon[0] + 'px'
+    ball.style.bottom = ballcurrentPositon[1] + 'px'
+
+}
+
 // move user
 function moveUser(e) {
     switch(e.key) {
@@ -71,9 +81,15 @@ function moveUser(e) {
                 currentPositon[0] +=10
                 drawUser()
             }
-            break;
-                      
+            break;                
     }
 }
 
 document.addEventListener('keydown', moveUser)
+
+// add ball
+const ball = document.createElement('div')
+ball.classList.add('ball')
+drawBall()
+grid.appendChild(ball)
+
