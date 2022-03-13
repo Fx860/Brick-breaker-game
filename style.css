@@ -7,14 +7,12 @@ body {
     color:aliceblue;
 }
 
-
 .grid {
     position: absolute;
     width: 560px;
     height: 300px;
     border: solid white 1px;
     margin-top: 17px;
-    
     
 }
 
