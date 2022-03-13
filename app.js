@@ -8,6 +8,7 @@ const borardHeight = 300
 let timerid
 let xDirection = 2
 let yDirection = 2
+let score = 0
 
 const userStart = [230, 10]
 let currentPositon = userStart
@@ -70,7 +71,6 @@ function drawUser() {
 function drawBall() {
     ball.style.left = ballcurrentPositon[0] + 'px'
     ball.style.bottom = ballcurrentPositon[1] + 'px'
-
 }
 
 // move user
@@ -90,7 +90,6 @@ function moveUser(e) {
             break;                
     }
 }
-
 document.addEventListener('keydown', moveUser)
 
 // add ball
@@ -107,7 +106,7 @@ function moveBall() {
     checkForCollisons()
 } 
 
-timerid =  setInterval(moveBall, 30)
+timerid =  setInterval(moveBall, 25)
 
 // check for collisons
 function checkForCollisons() {
@@ -122,21 +121,19 @@ for (let i = 0; i < blocks.length; i++) {
         allBlocks[i].classList.remove('block')
         blocks.splice(i, 1)
         changeDirection()
-        
+        score++
+        scoredisplay.innerHTML = score
 
+    //check for Win
+    if (blocks.length === 0) {
+        scoredisplay.innerHTML = 'YOU WIN'
+        clearInterval(timerid)
+        document.removeEventListener('keydown', moveUser)
+     }
+    }       
+  }
 
-
-        }
-            
-        
-    
-
-    
-}
-
-
-
-    // check for wall collisons
+    //check for wall collisons
     if (
         ballcurrentPositon[0] >= (borardWidth - ballDiameter) || 
         ballcurrentPositon[1] >= (borardHeight - ballDiameter) ||
@@ -145,12 +142,19 @@ for (let i = 0; i < blocks.length; i++) {
     changeDirection() 
 }
 
-// check for game over
+//check for user collisions
+if(
+    (ballcurrentPositon[0] > currentPositon[0] && ballcurrentPositon[0] < currentPositon[0] + blockWidth) &&
+    (ballcurrentPositon[1] > currentPositon[1] && ballcurrentPositon[1] < currentPositon[1] + blockHight)
+) {
+    changeDirection()
+}
+
+//check for game over
 if (ballcurrentPositon[1] <= 0) {
     clearInterval(timerid)
-    scoredisplay.innerHTML = 'You lose'
+    scoredisplay.innerHTML = 'YOU LOSE'
     document.removeEventListener('keydown', moveUser)
-
 }
 
 }
