@@ -111,6 +111,31 @@ timerid =  setInterval(moveBall, 30)
 
 // check for collisons
 function checkForCollisons() {
+
+// check for block collisons 
+for (let i = 0; i < blocks.length; i++) {
+    if (
+        (ballcurrentPositon[0] > blocks[i].bottomLeft[0] && ballcurrentPositon[0] < blocks[i].bottomright[0]) &&  
+        ((ballcurrentPositon[1] + ballDiameter) > blocks[i].bottomLeft[1] && ballcurrentPositon[1] < blocks[i].topLeft[1])
+    ) {
+        const allBlocks =  Array.from(document.querySelectorAll('.block'))
+        allBlocks[i].classList.remove('block')
+        blocks.splice(i, 1)
+        changeDirection()
+        
+
+
+
+        }
+            
+        
+    
+
+    
+}
+
+
+
     // check for wall collisons
     if (
         ballcurrentPositon[0] >= (borardWidth - ballDiameter) || 
@@ -140,7 +165,7 @@ function  changeDirection() {
         return
      }
      if (xDirection === -2 && yDirection === -2 ) {
-         yDirection == 2
+         yDirection = 2
          return
      }
      if (xDirection === -2 && yDirection === 2) {
@@ -148,8 +173,3 @@ function  changeDirection() {
          return
      }
 }
-
-
-
-
-
