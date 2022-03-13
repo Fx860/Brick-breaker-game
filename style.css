@@ -1,9 +1,21 @@
+body {
+    
+    background: url(./img/1.jpg);
+    background-size:cover;
+    display: flex;
+    font-style: oblique;
+    color:aliceblue;
+}
+
+
 .grid {
     position: absolute;
     width: 560px;
     height: 300px;
-    border: solid black 1px;
-    margin-top: 80px;
+    border: solid white 1px;
+    margin-top: 17px;
+    
+    
 }
 
 .block {
@@ -17,7 +29,7 @@
     position: absolute;
     width: 100px;
     height: 20px;
-    background-color: purple;
+    background-color: rgb(47, 0, 47);
 }
 
 .ball {
